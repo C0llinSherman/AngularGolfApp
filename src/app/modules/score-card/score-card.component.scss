@@ -1,4 +1,26 @@
 table {
     width: 100%;
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: space-between;
+    // th, td{
+    //   // display: flex;
+    //   flex-direction: row;
+    //   justify-content: space-between;
+
+    // }
+  }
+
+  .headerColumn {
+    width: 20%
+  }
+  .tableSpacing {
+    width: 8%
+  }
+  .scoreSpacing {
+    width: 100%
+  }
+  input{
+    width: 100%;
   }
   

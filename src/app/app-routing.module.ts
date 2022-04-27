@@ -5,11 +5,11 @@ import { SetUpComponent } from './modules/set-up/set-up.component';
 import { WelcomeComponent } from './modules/welcome/welcome.component';
 
 const routes: Routes = [
-  { path: 'welcome', component: WelcomeComponent },
+  // { path: 'welcome', component: WelcomeComponent },
   { path: 'score-card', component: ScoreCardComponent },
   { path: 'set-up', component: SetUpComponent},
 
-  { path: '**', component: WelcomeComponent },
+  { path: '**', component: SetUpComponent },
 ];
 
 @NgModule({

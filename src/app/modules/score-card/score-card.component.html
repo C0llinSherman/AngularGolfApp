@@ -1,62 +1,132 @@
+<h1>Course: {{course.name}}</h1>
+<h1>Tee: {{tee.name}}</h1>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-    
     <ng-container matColumnDef="metric">
-      <th mat-header-cell *matHeaderCellDef> Hole </th>
+      <th mat-header-cell *matHeaderCellDef class="headerColumn"> Hole </th>
       <td mat-cell *matCellDef="let data"> {{data.metric}} </td>
     </ng-container>
-  
+    
     <ng-container matColumnDef="hole1">
-      <th mat-header-cell *matHeaderCellDef> 1 </th>
+      <th mat-header-cell *matHeaderCellDef class="tableSpacing"> 1 </th>
       <td mat-cell *matCellDef="let data"> {{data.hole1}} </td>
     </ng-container>
-  
+    
     <ng-container matColumnDef="hole2">
-      <th mat-header-cell *matHeaderCellDef> 2 </th>
+      <th mat-header-cell *matHeaderCellDef class="tableSpacing"> 2 </th>
       <td mat-cell *matCellDef="let data"> {{data.hole2}} </td>
     </ng-container>
-  
+    
     <ng-container matColumnDef="hole3">
-      <th mat-header-cell *matHeaderCellDef> 3 </th>
+      <th mat-header-cell *matHeaderCellDef class="tableSpacing"> 3 </th>
       <td mat-cell *matCellDef="let data"> {{data.hole3}} </td>
     </ng-container>
-
+    
     <ng-container matColumnDef="hole4">
-      <th mat-header-cell *matHeaderCellDef> 4 </th>
+      <th mat-header-cell *matHeaderCellDef class="tableSpacing"> 4 </th>
       <td mat-cell *matCellDef="let data"> {{data.hole4}} </td>
     </ng-container>
-
+    
     <ng-container matColumnDef="hole5">
-      <th mat-header-cell *matHeaderCellDef> 5 </th>
+      <th mat-header-cell *matHeaderCellDef class="tableSpacing"> 5 </th>
       <td mat-cell *matCellDef="let data"> {{data.hole5}} </td>
     </ng-container>
-
+    
     <ng-container matColumnDef="hole6">
-      <th mat-header-cell *matHeaderCellDef> 6 </th>
+      <th mat-header-cell *matHeaderCellDef class="tableSpacing"> 6 </th>
       <td mat-cell *matCellDef="let data"> {{data.hole6}} </td>
     </ng-container>
-
+    
     <ng-container matColumnDef="hole7">
-      <th mat-header-cell *matHeaderCellDef> 7 </th>
+      <th mat-header-cell *matHeaderCellDef class="tableSpacing"> 7 </th>
       <td mat-cell *matCellDef="let data"> {{data.hole7}} </td>
     </ng-container>
-
+    
     <ng-container matColumnDef="hole8">
-      <th mat-header-cell *matHeaderCellDef> 8 </th>
+      <th mat-header-cell *matHeaderCellDef class="tableSpacing"> 8 </th>
       <td mat-cell *matCellDef="let data"> {{data.hole8}} </td>
     </ng-container>
-
+    
     <ng-container matColumnDef="hole9">
-      <th mat-header-cell *matHeaderCellDef> 9 </th>
+      <th mat-header-cell *matHeaderCellDef class="tableSpacing"> 9 </th>
       <td mat-cell *matCellDef="let data"> {{data.hole9}} </td>
     </ng-container>
 
     <ng-container matColumnDef="total">
-      <th mat-header-cell *matHeaderCellDef> Total </th>
+      <th mat-header-cell *matHeaderCellDef class="tableSpacing"> Total </th>
       <td mat-cell *matCellDef="let data"> {{data.total}} </td>
     </ng-container>
-  
+    
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   
+  <h3>Players</h3>
+  
+  <ng-container *ngIf="playerCount1" >
+    <table>
+      <tr>
+        <td class="headerColumn"><input type="text" [(ngModel)]="playerData[0].metric" (keyup)="saveData()"></td>
+        <td class="tableSpacing"><input type="text" [(ngModel)]="playerData[0].hole1"(keyup)="saveData()"></td>
+        <td><input type="text" [(ngModel)]="playerData[0].hole2"(keyup)="saveData()"></td>
+        <td><input type="text" [(ngModel)]="playerData[0].hole3"(keyup)="saveData()"></td>
+        <td><input type="text" [(ngModel)]="playerData[0].hole4"(keyup)="saveData()"></td>
+        <td><input type="text" [(ngModel)]="playerData[0].hole5"(keyup)="saveData()"></td>
+        <td><input type="text" [(ngModel)]="playerData[0].hole6"(keyup)="saveData()"></td>
+        <td><input type="text" [(ngModel)]="playerData[0].hole7"(keyup)="saveData()"></td>
+        <td><input type="text" [(ngModel)]="playerData[0].hole8"(keyup)="saveData()"></td>
+        <td><input type="text" [(ngModel)]="playerData[0].hole9"(keyup)="saveData()"></td>
+        <td><input type="text" value="{{playerData[0].total}}"(keyup)="saveData()"></td>
+        
+      </tr>
+    </table>
+   
+  </ng-container>
+  <ng-container *ngIf="playerCount2">
+    <tr>
+      <td class="headerColumn"><input type="text" [(ngModel)]="playerData[1].metric"(keyup)="saveData()"></td>
+      <td class="tableSpacing"><input type="text" [(ngModel)]="playerData[1].hole1"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[1].hole2"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[1].hole3"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[1].hole4"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[1].hole5"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[1].hole6"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[1].hole7"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[1].hole8"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[1].hole9"(keyup)="saveData()"></td>
+      <td><input type="text" value="{{playerData[1].total}}"(keyup)="saveData()"></td>
+      
+    </tr>
+  </ng-container>
+  <ng-container *ngIf="playerCount3">
+    <tr>
+      <td class="headerColumn"><input type="text" [(ngModel)]="playerData[2].metric"(keyup)="saveData()"></td>
+      <td class="tableSpacing"><input type="text" [(ngModel)]="playerData[2].hole1"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[2].hole2"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[2].hole3"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[2].hole4"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[2].hole5"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[2].hole6"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[2].hole7"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[2].hole8"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[2].hole9"(keyup)="saveData()"></td>
+      <td><input type="text" value="{{playerData[2].total}}"(keyup)="saveData()"></td>
+      
+    </tr>
+  </ng-container>
+  <ng-container *ngIf="playerCount4">
+    <tr>
+      <td class="headerColumn"><input type="text" [(ngModel)]="playerData[3].metric"(keyup)="saveData()"></td>
+      <td class="tableSpacing"><input type="text" [(ngModel)]="playerData[3].hole1"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[3].hole2"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[3].hole3"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[3].hole4"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[3].hole5"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[3].hole6"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[3].hole7"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[3].hole8"(keyup)="saveData()"></td>
+      <td><input type="text" [(ngModel)]="playerData[3].hole9"(keyup)="saveData()"></td>
+      <td><input type="text" value="{{playerData[3].total}}"(keyup)="saveData()"></td>
+      
+    </tr>
+  </ng-container>

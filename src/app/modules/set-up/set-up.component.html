@@ -1,1 +1,31 @@
-<p>set-up works!</p>
+<h1>Course</h1>
+<mat-form-field appearance="fill">
+    <mat-label>Select</mat-label>
+    <mat-select>
+        <mat-option value="one" (click)="courseChange('18300')">Fox Hollow</mat-option>
+        <mat-option value="two"(click)="courseChange('11819')">Thanksgiving Point</mat-option>
+        <mat-option value="three"(click)="courseChange('19002')">Spanish Oaks</mat-option>
+    </mat-select>
+</mat-form-field>
+
+<h1>Tee</h1>
+<mat-form-field appearance="fill">
+    <mat-label>Select</mat-label>
+    <mat-select>
+        <mat-option value="one" (click)="teeChange(0)">Pro</mat-option>
+        <mat-option value="two"(click)="teeChange(1)">Champion</mat-option>
+        <mat-option value="three"(click)="teeChange(2)">Men's</mat-option>
+        <mat-option value="four"(click)="teeChange(3)">Women's</mat-option>
+    </mat-select>
+</mat-form-field>
+<h1>Player Count</h1>
+<mat-form-field appearance="fill">
+    <mat-label>Select</mat-label>
+    <mat-select>
+        <mat-option value="one" (click)="playerCountChange(1)">One</mat-option>
+        <mat-option value="two" (click)="playerCountChange(2)">Two</mat-option>
+        <mat-option value="three" (click)="playerCountChange(3)">Three</mat-option>
+        <mat-option value="four" (click)="playerCountChange(4)">Four</mat-option>
+    </mat-select>
+</mat-form-field>
+<button routerLink="/score-card">Submit</button>
