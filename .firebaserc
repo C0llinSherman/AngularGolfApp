@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-golf-15353": {
+      "hosting": {
+        "AngularGolfApp": [
+          "angular-golf-15353"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-golf-15353"
+  }
+}

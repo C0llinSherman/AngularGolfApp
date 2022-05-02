@@ -1,5 +1,6 @@
 import { getLocalePluralCase } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Course } from 'src/app/interfaces/course';
 import { Player } from 'src/app/interfaces/player';
 import { ScoreServiceService } from 'src/app/services/score-service.service';
@@ -25,6 +26,13 @@ let PLAYER_DATA: Player[] = [
   styleUrls: ['./score-card.component.scss']
 })
 export class ScoreCardComponent implements OnInit {
+
+  private scoresRef: AngularFirestoreCollection<any>
+  private settingsRef: AngularFirestoreCollection<any>
+
+
+
+
   playerData = PLAYER_DATA
   course
   tee
@@ -34,16 +42,25 @@ export class ScoreCardComponent implements OnInit {
   playerCount3
   playerCount4
   response: any;
-  constructor(private scoreService: ScoreServiceService) { }
+  constructor(
+    private scoreService: ScoreServiceService,
+    private db: AngularFirestore
+  ) {
+    this.scoresRef = this.db.collection('scores')
+    this.settingsRef = this.db.collection('settings')
+
+
+  }
   data: string;
   async ngOnInit() {
+
     let course = JSON.parse(localStorage.getItem('courseID'))
     this.course = course
     this.tee = JSON.parse(localStorage.getItem('tee'))
-    
+
     let playerCount = JSON.parse(localStorage.getItem('playerCount'))
     this.playerCount = playerCount
-    
+
     if (playerCount === 1) {
       this.playerCount1 = true
     }
@@ -120,6 +137,28 @@ export class ScoreCardComponent implements OnInit {
     PLAYER_DATA[1].total = Number(PLAYER_DATA[1].hole1) + Number(PLAYER_DATA[1].hole2) + Number(PLAYER_DATA[1].hole3) + Number(PLAYER_DATA[1].hole4) + Number(PLAYER_DATA[1].hole5) + Number(PLAYER_DATA[1].hole6) + Number(PLAYER_DATA[1].hole7) + Number(PLAYER_DATA[1].hole8) + Number(PLAYER_DATA[1].hole9)
     PLAYER_DATA[2].total = Number(PLAYER_DATA[2].hole1) + Number(PLAYER_DATA[2].hole2) + Number(PLAYER_DATA[2].hole3) + Number(PLAYER_DATA[2].hole4) + Number(PLAYER_DATA[2].hole5) + Number(PLAYER_DATA[2].hole6) + Number(PLAYER_DATA[2].hole7) + Number(PLAYER_DATA[2].hole8) + Number(PLAYER_DATA[2].hole9)
     PLAYER_DATA[3].total = Number(PLAYER_DATA[3].hole1) + Number(PLAYER_DATA[3].hole2) + Number(PLAYER_DATA[3].hole3) + Number(PLAYER_DATA[3].hole4) + Number(PLAYER_DATA[3].hole5) + Number(PLAYER_DATA[3].hole6) + Number(PLAYER_DATA[3].hole7) + Number(PLAYER_DATA[3].hole8) + Number(PLAYER_DATA[3].hole9)
-   
+    this.saveScores({ playerScores: this.playerData })
+    let playerCount = localStorage.getItem('playerCount')
+    let tee = localStorage.getItem('tee')
+    let courseID = localStorage.getItem('courseID')
+    console.log(courseID)
+    this.saveCourseSettings({ courseSettings: [{ playerCount: playerCount }, { tee: tee }, { courseID: courseID }] })
   }
+
+
+
+  saveScores(scores) {
+    console.log('asld;kfj')
+    return this.scoresRef.doc('91yRqs0n6J3p1av8Yrag').update(scores)
+      .then(_ => console.log('success on add'))
+      .catch(error => console.log('add', error))
+  }
+
+  saveCourseSettings(settings) {
+    console.log(settings)
+    return this.settingsRef.doc('VlujrgrkSlbyQ9dh3rVU').update(settings)
+      .then(_ => console.log('success on add'))
+      .catch(error => console.log('add', error))
+  }
+  
 }

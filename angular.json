@@ -105,6 +105,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "AngularGolfApp:build:production",
+            "firebaseProject": "angular-golf-15353",
+            "firebaseHostingSite": "angular-golf-15353"
+          }
         }
       }
     }
